@@ -7,4 +7,4 @@ def home(request):
 
     print(" Home Page is Invoked Successfully ")
 
-    return render(request,'index.html')
+    return render(request,'home.html')
