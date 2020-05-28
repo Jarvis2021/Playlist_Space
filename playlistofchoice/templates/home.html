@@ -10,8 +10,10 @@
   <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
   {% load static %}
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
+
   <script src="/static/js/app.js" defer></script>
 </head>
 <body>
@@ -23,6 +25,7 @@
   		<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">
   		</button>
   	</div>
+
   	<!-- Collection of nav links, forms, and other content for toggling -->
   	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
   		<ul class="nav navbar-nav navbar-right ml-auto">
@@ -31,6 +34,7 @@
   				<ul class="dropdown-menu form-wrapper">
   					<li>
   						<form action="/" method="POST">
+                {% csrf_token %}
   							<div class="form-group">
   								<input type="text" class="form-control" placeholder="Email" required="required">
   							</div>
@@ -49,7 +53,8 @@
   				<a href="/" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn mt-1 mb-1"> Sign up </a>
   				<ul class="dropdown-menu form-wrapper">
   					<li>
-  						<form action="/" method="post">
+  						<form class="searchbar" action="/" method="post">
+                {% csrf_token %}
   							<p class="hint-text">Fill in this form to create your account!</p>
   							<div class="form-group">
   								<input type="text" class="form-control" placeholder="First Name" required="required">
@@ -77,19 +82,43 @@
   		</ul>
   	</div>
   </nav>
-  
   <div class="swiper-container swiper">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src="/static/img/image4.jpg" alt="Myimage"></div>
-      <div class="swiper-slide"><img src="/static/img/image5.jpg" alt="Myimage"></div>
-      <div class="swiper-slide"><img src="/static/img/image3.jpg" alt="Myimage"></div>
-      <div class="swiper-slide"><img src="/static/img/image2.jpg" alt="Myimage"></div>
-      <div class="swiper-slide"><img src="/static/img/image1.jpg" alt="Myimage"></div>
+      <div class="swiper-slide" style="width: auto;height:auto"><img src="/static/img/image4.jpg" alt="My image" ></div>
+      <div class="swiper-slide" style="width: auto;height:auto"><img src="/static/img/image5.jpg" alt="My image" ></div>
+      <div class="swiper-slide" style="width: auto;height:auto"><img src="/static/img/image3.jpg" alt="My image" ></div>
+      <div class="swiper-slide" style="width: auto;height:auto"><img src="/static/img/image2.jpg" alt="My image" ></div>
+      <div class="swiper-slide" style="width: auto;height:auto"><img src="/static/img/image1.jpg" alt="My image" ></div>
     </div>
     <div class="swiper-pagination swiper-pagination"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
+
+    <div class="container mt-5">
+      <form class="userselection" action="/" method="POST">
+        {% csrf_token %}
+        <div class="row">
+          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-info" type="submit" name="button"> Search </button>
+          <div class="btn-categories">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/">GENRE & MOODS</a>
+              <a class="dropdown-item" href="/">NEW RELEASES</a>
+              <a class="dropdown-item" href="/">CONCERTS</a>
+              <a class="dropdown-item" href="/">CHARTS</a>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+
+
   <div class="footer">
     <div class="swiper-container swiper-1">
       <div class="swiper-wrapper">
@@ -122,6 +151,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 
 </body>
 </html>

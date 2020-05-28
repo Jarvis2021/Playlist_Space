@@ -22,7 +22,7 @@ navigation:
 });
 var swiper = new Swiper('.swiper-1',
 {
-slidesPerView: 10,
+slidesPerView: 9,
 loop: true,
 loopFillGroupWithBlank: true,
 autoplay:
