@@ -29,6 +29,7 @@
   	<!-- Collection of nav links, forms, and other content for toggling -->
   	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
   		<ul class="nav navbar-nav navbar-right ml-auto">
+        <a class="spot" href="#">Login with Spotify</a>
   			<li class="nav-item">
   				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="/"> Login </a>
   				<ul class="dropdown-menu form-wrapper">
@@ -41,7 +42,7 @@
                 <div class="form-group">
   							<input type="password" class="form-control" placeholder="Password" required="required">
   							</div>
-  							<input type="submit" class="btn btn-primary btn-block" value="Login">
+  							<input type="submit" class="btn btn-primary btn-login" value="Login">
   							<div class="form-footer">
   								<a href="#">Forgot Your password?</a>
   							</div>
@@ -94,30 +95,26 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
   </div>
-
-    <div class="container mt-5">
-      <form class="userselection" action="/" method="POST">
+  <div class="container">
+    <div class="row">
+      <form class="search" action="/results" method="POST">
         {% csrf_token %}
-        <div class="row">
-          <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-info" type="submit" name="button"> Search </button>
-          <div class="btn-categories">
-            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Categories
-            </button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="/">GENRE & MOODS</a>
-              <a class="dropdown-item" href="/">NEW RELEASES</a>
-              <a class="dropdown-item" href="/">CONCERTS</a>
-              <a class="dropdown-item" href="/">CHARTS</a>
-            </div>
-          </div>
-
-        </div>
+        <input class="form-control" type="text" name="track" placeholder="Search For Your Favorite Song!!">
+        <button class="btn btn-info" type="submit" name="button" > Search </button>
       </form>
+      <div class="dropdown dropright">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+           Categories
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/genremoods">GENRE & MOODS</a>
+          <a class="dropdown-item" href="/newrelease">NEW RELEASES</a>
+          <a class="dropdown-item" href="/chart">CHARTS</a>
+          <a class="dropdown-item" href="/concert">CONCERTS</a>
+        </div>
+     </div>
     </div>
-
-
+  </div>
 
   <div class="footer">
     <div class="swiper-container swiper-1">

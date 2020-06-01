@@ -3,12 +3,9 @@ html, body{
   height: 1000px;
 }
 
-/*                                              Navbar Styling                                  */
+/***************************************************         NavBar Styling      *************************************************** */
 
-.navbar {
-  padding-left: 0px;
-  padding-right: 0px;
-}
+
 .navbar-nav .logo-nav {
   position: fixed;
 }
@@ -66,6 +63,7 @@ html, body{
 }
 .navbar .nav .get-started-btn {
   min-width: 55px;
+  background-color: #17a2b8;
 }
 .navbar ul.nav li.open > a.get-started-btn {
   color: #fff;
@@ -92,80 +90,74 @@ html, body{
   display: none;
 }
 
+.navbar-expand-sm .navbar-nav .nav-link{
+  padding-right: 3.5rem;
+  padding-left: 1.5rem;
+}
+.navbar-brand{
+  padding-right: 5.5rem;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/***************************************************           Container Row Section Styling      *************************************************** */
 
 .container {
-  min-height: 20px;
+  margin-top: 50px;
+  min-height: 40px;
   max-width: 100%;
 }
-
 .container .row{
-
-  padding-top: 20px;
-  margin-left: 200px;
   width: auto;
 }
-
-.form-control {
-  width: auto;
-  height: 40px;
-  margin-left: 2px;
-}
-
-.btn-categories .btn{
+.container .row .search .form-control {
+  width: 350px;
+  margin-left: 400px;
   display: inline-block;
-  margin-left: 50px;
-  width: 120px;
-  color: #fff;
-  padding: 7px;
-  background-color: #17a2b8;
 }
 
 .btn-info{
-  display: inline-block;
-  margin-left: 40px;
+  margin-left: 60px;
+  margin-top: 3px;
+  height: 37px;
+  color: #fff;
 }
 
-.form-control mr-sm-1{
-  width: 50px;
+.spot{
+  margin-top: 8px;
+  padding-right: 35px;
+  text-decoration: none;
+  color: black;
+}
+
+.btn-primary {
+  margin-left: 20px;
+}
+
+.navbar .nav .btn-primary {
+  width: 5rem;
+}
+
+
+.categories{
+  margin-left: 60px;
+  width: 120px;
+  color: #fff;
 
 }
 
-.userselection{
-  margin-left: 300px;
-}
 
-.custom-select{
-  width: 180px;
-}
+
+
+
+/***************************************************                             Swiper Styling      *************************************************** */
 
 .swiper-container {
+  vertical-align: top;
   position: relative;
   max-width: 100%;
-  margin-top:10px;
   height: 600px;
 }
 .swiper-slide {
+  vertical-align: top;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -182,13 +174,12 @@ html, body{
 
 
 
-.navbar-expand-sm .navbar-nav .nav-link{
-  padding-right: 3.5rem;
-  padding-left: 1.5rem;
-}
-.navbar-brand{
-  padding-right: 5.5rem;
-}
+
+
+
+/***************************************************                             Swiper Footer Styling      *************************************************** */
+
+
 
 .footer {
   position:relative;
@@ -214,5 +205,32 @@ html, body{
 .footer .swiper-1 .swiper-slide {
   display: flex;
   justify-content: left;
+
+}
+/***************************************************END*************************************************** */
+
+
+
+
+.content {
+  display: inline-block;
+  margin-left: 120px;
+  width: 1600px;
+}
+
+.img-responsive{
+  position: relative;
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+}
+
+.caption{
+  color: white;
+  position: fixed;
+
+  width: 10%;
+  text-align: left;
+  margin-left: 2%;
 
 }
