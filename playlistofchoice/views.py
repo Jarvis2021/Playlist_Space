@@ -7,16 +7,7 @@ import sys
 # Create your views here.
 def index(request):
 
-    print(request.POST)
-
     return render(request,'home.html')
-
-def home_page(request):
-
-    print(request.POST)
-
-    return redirect('/genre_mood')
-
 
 def genre_mood(request):
 
@@ -26,11 +17,6 @@ def genre_mood(request):
     client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     results = sp.categories(country='US', limit=50, offset=0)
-
-    # print(results['categories']['items'][0]['href'])
-    # print(results['categories']['items'][0]['name'])
-    # print(results['categories']['items'][0]['icons'][0]['url'])
-
     genre_mood_list=[]
 
     for i in results['categories']['items']:
@@ -41,9 +27,7 @@ def genre_mood(request):
                 "category_image" : i['icons'][0]['url']
             }
         )
-    print(genre_mood_list)
     context = {'category_list' : genre_mood_list}
-
 
     return render(request,'genreandmood.html',context)
 
@@ -58,8 +42,3 @@ def charts(request):
 def concerts(request):
 
     return render(request,'concerts.html')
-
-def results(request):
-    if 'user' not in request.session:
-        return redirect('/')
-    return render(request,'results.html')
