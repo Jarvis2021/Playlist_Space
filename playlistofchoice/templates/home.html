@@ -29,7 +29,7 @@
   	<!-- Collection of nav links, forms, and other content for toggling -->
   	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
   		<ul class="nav navbar-nav navbar-right ml-auto">
-        <a class="spot" href="#">Login with Spotify</a>
+        <a class="spot" href="/sign_in">Login with Spotify</a>
   			<li class="nav-item">
   				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="/"> Login </a>
   				<ul class="dropdown-menu form-wrapper">
@@ -97,7 +97,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <form class="search" action="/results" method="POST">
+      <form class="search" action="/search_track" method="POST">
         {% csrf_token %}
         <input class="form-control" type="text" name="track" placeholder="Search For Your Favorite Song!!">
         <button class="btn btn-info" type="submit" name="button" > Search </button>
