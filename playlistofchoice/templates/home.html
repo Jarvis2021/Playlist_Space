@@ -4,21 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
   <title> One Space </title>
+  <link rel="shortcut icon" type="image/png" href="{% static '/img/favicon.ico' %}"/>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
-  {% load static %}
   <link rel="stylesheet" href="{% static '/css/style.css' %}">
-
   <script src="/static/js/app.js" defer></script>
 </head>
-<body>
+<body style="background-color: black">
 
-  <nav class="navbar navbar-default navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-default navbar-expand-lg navbar-dark bg-dark">
   	<div class="navbar-header d-flex col">
       <img src="{% static "img/player.png" %}" width="55" height="55" alt="">
   		<a class="navbar-brand" href="/">Music<b>Space</b></a>
@@ -29,9 +28,9 @@
   	<!-- Collection of nav links, forms, and other content for toggling -->
   	<div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
   		<ul class="nav navbar-nav navbar-right ml-auto">
-        <a class="spot" href="/sign_in">Login with Spotify</a>
+        <a class="spot" href="#" style="color: whitesmoke">Login with Spotify</a>
   			<li class="nav-item">
-  				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="/"> Login </a>
+  				<a data-toggle="dropdown" class="nav-link dropdown-toggle" href="/" style="color: whitesmoke"> Login </a>
   				<ul class="dropdown-menu form-wrapper">
   					<li>
   						<form action="/" method="POST">
@@ -97,7 +96,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <form class="search" action="/search_track" method="POST">
+      <form class="search" action="/results" method="POST">
         {% csrf_token %}
         <input class="form-control" type="text" name="track" placeholder="Search For Your Favorite Song!!">
         <button class="btn btn-info" type="submit" name="button" > Search </button>
@@ -107,7 +106,7 @@
            Categories
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="/genremoods">GENRE & MOODS</a>
+          <a class="dropdown-item" href="/genreresult">GENRE & MOODS</a>
           <a class="dropdown-item" href="/newrelease">NEW RELEASES</a>
           <a class="dropdown-item" href="/chart">CHARTS</a>
           <a class="dropdown-item" href="/concert">CONCERTS</a>
