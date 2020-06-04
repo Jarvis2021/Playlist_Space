@@ -1,6 +1,18 @@
-html, body{
-  background-color: white;
-  height: 1000px;
+html {
+  background: radial-gradient(#1B2735 0%, #090A0F auto);
+}
+
+.container-2{
+ background-color: black;
+}
+
+.navbar{
+ padding-left: 5rem;
+ padding-right: 4rem;
+}
+
+.bar{
+  margin-left: 80rem;
 }
 
 /***************************************************         NavBar Styling      *************************************************** */
@@ -14,7 +26,7 @@ html, body{
   padding: 0 !important;
 }
 .navbar {
-  background: #fff;
+  background-color: black;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 0;
@@ -213,6 +225,8 @@ html, body{
 
 
 .content {
+  margin-top: 100px;
+  position: relative;
   display: inline-block;
   margin-left: 120px;
   width: 1600px;

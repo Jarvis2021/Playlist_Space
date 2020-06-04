@@ -50,13 +50,13 @@ def callback(request):
     return redirect('/')
 
 
-def genre_mood(request):
-
+def genre_result(request):
 
     cid = '507b63501e804f87bd8538c0c6f395ed'
     secret = 'b14546bedc8844c8be95486386500f50'
     client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager,requests_timeout=100)
+
     results = sp.categories(country='US', limit=50, offset=0)
     genre_mood_list=[]
 
@@ -68,9 +68,18 @@ def genre_mood(request):
                 "category_image" : i['icons'][0]['url']
             }
         )
-    context = {'category_list' : genre_mood_list}
+    request.session['category_list'] = genre_mood_list
 
-    return render(request,'genreandmood.html',context)
+    return redirect('/genremoods')
+
+def genremoods(request):
+
+    genre_list = request.session['category_list']
+
+    context = {
+        "genre_list" : genre_list
+    }
+    return render(request, 'genreandmood.html',context)
 
 def new_playlist(request):
     return render(request, 'new_playlist.html')
@@ -94,7 +103,7 @@ def get_playlists(request):
             'playlists_list': playlists_list
         }
         return render(request, 'playlists.html', context)
-        
+
     else:
         request.session['username'] == False
         return render(request, 'playlists.html')
@@ -188,7 +197,7 @@ def search_track(request):
                 'track_id': i['id'],
                 'explicit': i['explicit'],
             }
-        )    
+        )
     # print("TRACK INFO", track_info_list)
     request.session['track_info_list'] = track_info_list
     request.session['track_searched'] = track
