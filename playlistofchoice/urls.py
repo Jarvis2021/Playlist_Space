@@ -5,7 +5,8 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('genremoods', views.genre_mood),
+    path('genreresult', views.genre_result),
+    path('genremoods', views.genremoods),
     path('newrelease', views.newreleases),
     path('chart', views.charts),
     path('concert', views.concerts),
