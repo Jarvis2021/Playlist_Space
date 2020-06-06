@@ -9,8 +9,25 @@ import datetime
 
 # Create your views here.
 def index(request):
-
-    return render(request,'home.html')
+    cid = 'fcabf1c8ee3d4bbc81275366fd4bfacf'
+    secret = '39c9ebdb80bb41d89de106bb59e4e205'
+    client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    results = sp.new_releases(country=None, limit=20, offset=0)
+    new_realeases_list = []
+    for i in results['albums']['items']:
+        new_realeases_list.append(
+            {
+                "artist": i['artists'][0]['name'],
+                "album_id": i['id'],
+                "album": i['name'],
+                "image_url": i['images'][0]['url'],
+            }
+        )
+    context = {
+        'new_releases_list': new_realeases_list
+    }
+    return render(request,'home.html', context)
 
 def sign_in(request):
     client_id = '93d03c51a99146ed992ca0175f68674b'
@@ -85,7 +102,7 @@ def new_playlist(request):
     return render(request, 'new_playlist.html')
 
 def get_playlists(request):
-    if request.session['access_token']:
+    if 'access_token' in request.session:
         token = request.session['access_token']
         sp = spotipy.Spotify(auth=token)
         username = sp.current_user()['id']
@@ -105,11 +122,10 @@ def get_playlists(request):
         return render(request, 'playlists.html', context)
 
     else:
-        request.session['username'] == False
-        return render(request, 'playlists.html')
+        return redirect('/')
 
 def create_playlist(request):
-    if request.session['access_token']:
+    if 'access_token' in request.session:
         title = request.POST['playlist_title']
         desc = request.POST['playlist_desc']
         token = request.session['access_token']
@@ -121,7 +137,7 @@ def create_playlist(request):
         return redirect('/')
 
 def add_song_to_playlist(request, track_id):
-    if request.session['access_token']:
+    if 'access_token' in request.session:
         token = request.session['access_token']
         sp = spotipy.Spotify(auth=token)
         username = sp.current_user()['id']
@@ -145,7 +161,7 @@ def add_song_to_playlist(request, track_id):
 
 def new_song_in_playlist(request):
     # print(request.POST)
-    if request.session['access_token']:
+    if 'access_token' in request.session:
         track_id = request.POST['track_id']
         track_list = [track_id]
         playlist_id = request.POST['playlist_id']
@@ -157,16 +173,29 @@ def new_song_in_playlist(request):
     else:
         return redirect('/')
 
-def newreleases (request):
-    return render(request,'newreleases.html')
 
-def charts(request):
+def new_releases(request):
+    cid = 'fcabf1c8ee3d4bbc81275366fd4bfacf'
+    secret = '39c9ebdb80bb41d89de106bb59e4e205'
+    client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    results = sp.new_releases(country=None, limit=20, offset=0)
+    new_realeases_list = []
+    for i in results['albums']['items']:
+        new_realeases_list.append(
+            {
+                "artist": i['artists'][0]['name'],
+                "album_id": i['id'],
+                "album": i['name'],
+                "image_url": i['images'][0]['url'],
+            }
+        )
+    context = {
+        'new_releases_list': new_realeases_list
+    }
+    return render(request, 'new_releases.html', context)
 
-    return render(request,'charts.html')
 
-def concerts(request):
-
-    return render(request,'concerts.html')
 
 
 def track_results(request):
@@ -181,7 +210,7 @@ def track_results(request):
 def search_track(request):
     track = request.POST['track']
     if track == '':
-        return redirect('/show_tracks')
+        return redirect('/')
     cid = '93d03c51a99146ed992ca0175f68674b'
     secret = '92a2119255fb489bbfe6e2a054f8c4b5'
     client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
